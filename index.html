@@ -1,112 +1,191 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jan-Egils pedagogiske spill</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #005f73;
-            color: #fff;
-            text-align: center;
-            padding: 40px 0;
-        }
-        header img {
-            height: 80px;
-        }
-        main {
-            padding: 20px;
-            max-width: 900px;
-            margin: auto;
-        }
-        .game {
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-            margin: 20px 0;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-        }
-        .game img {
-            height: 100px;
-            margin-right: 20px;
-        }
-        .game h2 {
-            margin-top: 0;
-        }
-        .description {
-            font-size: 0.95rem;
-            line-height: 1.4;
-            color: #333;
-        }
-        .play-link {
-            display: inline-block;
-            margin-top: 10px;
-            background: #0a9396;
-            color: #fff;
-            text-decoration: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-        }
-        .play-link:hover {
-            background: #008080;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jan-Egils pedagogiske spill</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #333;
+}
+
+header {
+    text-align: center;
+    padding: 60px 20px;
+    color: white;
+}
+
+header pre {
+    font-size: 14px;
+    line-height: 1.1;
+    font-weight: 600;
+}
+
+header h1 {
+    margin: 20px 0 10px 0;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card pre {
+    font-family: monospace;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.card h2 {
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+.card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: 0.3s;
+}
+
+.button:hover {
+    opacity: 0.85;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: white;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+</style>
 </head>
 <body>
 
 <header>
-    <img src="images/logo_main.png" alt="Jan-Egils Pedagogiske Spill logo">
-    <h1>Jan-Egils pedagogiske spill</h1>
-    <p>Velg et spill, og ha det gøy mens du lærer!</p>
+<pre>
+     _       _   _      ______       _ _ 
+    | |     | | | |    |  ____|     (_) |
+    | | __ _| |_| |__  | |__   _ __  _| |
+ _  | |/ _` | __| '_ \ |  __| | '_ \| | |
+| |_| | (_| | |_| | | || |____| | | | | |
+ \___/ \__,_|\__|_| |_||______|_| |_|_|_|
+</pre>
+<h1>Jan-Egils pedagogiske spill</h1>
+<p>Læring gjennom lek 🚀</p>
 </header>
 
-<main>
+<div class="container">
 
-    <section class="game">
-        <img src="images/logo_gjett.png" alt="Gjett-spillet logo">
-        <div>
-            <h2>Gjett-spillet</h2>
-            <p class="description">
-                Et morsomt gjettespill hvor du skal finne ordet basert på hint og bokstaver.
-                Du får se hvilke bokstaver som er riktige og prøve igjen til du har løst ordet.
-            </p>
-            <a class="play-link" href="https://svakaffi-design.github.io/23gjett/" target="_blank">Spill Gjett-spillet</a>
-        </div>
-    </section>
+<div class="card">
+<pre>
+  ____   ____  
+ |___ \ |___ \ 
+   __) |  __) |
+  |__ <  |__ < 
+  ___) | ___) |
+ |____/ |____/ 
 
-    <section class="game">
-        <img src="images/logo_hestkatt.png" alt="Hest og Katt logo">
-        <div>
-            <h2>Hest og Katt</h2>
-            <p class="description">
-                Et enkelt og pedagogisk spill for å lære ord og bilder. Klikk på riktig bilde
-                når du hører ordet, og se hvor mange du treffer!
-            </p>
-            <a class="play-link" href="https://svakaffi-design.github.io/hestogkatt/" target="_blank">Spill Hest og Katt</a>
-        </div>
-    </section>
+   G J E T T
+</pre>
+<h2>23-Gjett</h2>
+<p>
+Gjett riktig ord før tiden går ut. Du får hint og må bruke bokstavene smart.
+Passer fint for å trene ordforståelse og konsentrasjon.
+</p>
+<a class="button" href="https://svakaffi-design.github.io/23gjett/" target="_blank">
+Spill nå
+</a>
+</div>
 
-    <section class="game">
-        <img src="images/logo_alfabetet.png" alt="Alfabetspillet logo">
-        <div>
-            <h2>Alfabetspillet</h2>
-            <p class="description">
-                Lær alfabetet mens du spiller! Velg riktig bokstav, øv på rekkefølge
-                og få hjelp til å huske bokstavene på en artig måte.
-            </p>
-            <a class="play-link" href="https://svakaffi-design.github.io/alfabetspillet-server/" target="_blank">Spill Alfabetspillet</a>
-        </div>
-    </section>
+<div class="card">
+<pre>
+   ,--.      /\_/\  
+  ( oo )     ( o.o ) 
+  /  \/       > ^ <  
+  \   /       
+   `--'        
 
-</main>
+  H E S T  &  K A T T
+</pre>
+<h2>Hest og Katt</h2>
+<p>
+Et visuelt og morsomt spill hvor elevene må velge riktig dyr.
+Perfekt for begrepslæring og rask respons.
+</p>
+<a class="button" href="https://svakaffi-design.github.io/hestogkatt/" target="_blank">
+Spill nå
+</a>
+</div>
+
+<div class="card">
+<pre>
+ A  B  C  D  E
+ F  G  H  I  J
+ K  L  M  N  O
+ P  Q  R  S  T
+ U  V  W  X  Y  Z
+
+ A L F A B E T
+</pre>
+<h2>Alfabetspillet</h2>
+<p>
+Tren på bokstavene i alfabetet. Øv på rekkefølge og bokstavgjenkjenning
+på en enkel og motiverende måte.
+</p>
+<a class="button" href="https://svakaffi-design.github.io/alfabetspillet-server/" target="_blank">
+Spill nå
+</a>
+</div>
+
+</div>
+
+<footer>
+© 2026 Jan-Egil – Pedagogiske spill laget for læring og glede
+</footer>
 
 </body>
 </html>
