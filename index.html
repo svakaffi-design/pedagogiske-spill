@@ -3,188 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jan-Egils pedagogiske spill</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<title>Jan-Egils spilleside</title>
 
 <style>
-* { box-sizing: border-box; }
+@keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
 
 body {
     margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4facfe, #00f2fe);
-    color: #333;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #ff00cc);
+    background-size: 400% 400%;
+    animation: bgMove 12s ease infinite;
+    color: white;
 }
 
 header {
     text-align: center;
-    padding: 60px 20px;
-    color: white;
+    padding: 3rem 1rem 1rem 1rem;
 }
 
-header pre {
-    font-size: 14px;
-    line-height: 1.1;
-    font-weight: 600;
+.ascii {
+    white-space: pre;
+    font-size: 0.7rem;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
 }
 
-header h1 {
-    margin: 20px 0 10px 0;
-    font-size: 2.5rem;
-    font-weight: 800;
+h1 {
+    font-size: 2.2rem;
+    background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 20px;
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
 .card {
-    background: white;
+    background: rgba(255,255,255,0.08);
+    border: 2px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    text-decoration: none;
+    color: white;
     border-radius: 20px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     transition: 0.3s ease;
+    animation: float 4s ease-in-out infinite;
 }
 
 .card:hover {
-    transform: translateY(-8px);
-}
-
-.card pre {
-    font-family: monospace;
-    font-size: 12px;
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.card h2 {
-    margin: 10px 0;
-    font-weight: 600;
-}
-
-.card p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.button {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    transition: 0.3s;
-}
-
-.button:hover {
-    opacity: 0.85;
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 0 25px #ff00ff, 0 0 40px #00ffff;
 }
 
 footer {
     text-align: center;
-    padding: 30px;
-    color: white;
-    opacity: 0.9;
-    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    opacity: 0.8;
 }
 </style>
 </head>
+
 <body>
 
 <header>
-<pre>
-     _       _   _      ______       _ _ 
-    | |     | | | |    |  ____|     (_) |
-    | | __ _| |_| |__  | |__   _ __  _| |
- _  | |/ _` | __| '_ \ |  __| | '_ \| | |
-| |_| | (_| | |_| | | || |____| | | | | |
- \___/ \__,_|\__|_| |_||______|_| |_|_|_|
+
+<pre class="ascii">
+ ██████╗  █████╗ ███╗   ███╗███████╗
+██╔════╝ ██╔══██╗████╗ ████║██╔════╝
+██║  ███╗███████║██╔████╔██║█████╗  
+██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  
+╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗
+ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
+
+      >>> JAN-EGILS SPILLESIDE 2026 <<<
 </pre>
-<h1>Jan-Egils pedagogiske spill</h1>
-<p>Læring gjennom lek 🚀</p>
+
+<h1>LEVEL UP YOUR BRAIN 🎮🚀</h1>
+
 </header>
 
-<div class="container">
+<main>
 
-<div class="card">
-<pre>
-  ____   ____  
- |___ \ |___ \ 
-   __) |  __) |
-  |__ <  |__ < 
-  ___) | ___) |
- |____/ |____/ 
-
-   G J E T T
-</pre>
-<h2>23-Gjett</h2>
-<p>
-Gjett riktig ord før tiden går ut. Du får hint og må bruke bokstavene smart.
-Passer fint for å trene ordforståelse og konsentrasjon.
-</p>
-<a class="button" href="https://svakaffi-design.github.io/23gjett/" target="_blank">
-Spill nå
+<a class="card" href="https://svakaffi-design.github.io/23gjett/" target="_blank">
+<h2>🔢 23 Gjett</h2>
+<p>Beat the number. Claim the high score.</p>
 </a>
-</div>
 
-<div class="card">
-<pre>
-   ,--.      /\_/\  
-  ( oo )     ( o.o ) 
-  /  \/       > ^ <  
-  \   /       
-   `--'        
-
-  H E S T  &  K A T T
-</pre>
-<h2>Hest og Katt</h2>
-<p>
-Et visuelt og morsomt spill hvor elevene må velge riktig dyr.
-Perfekt for begrepslæring og rask respons.
-</p>
-<a class="button" href="https://svakaffi-design.github.io/hestogkatt/" target="_blank">
-Spill nå
+<a class="card" href="https://svakaffi-design.github.io/hestogkatt/" target="_blank">
+<h2>🐴 Hest og Katt</h2>
+<p>Animal showdown – who wins?</p>
 </a>
-</div>
 
-<div class="card">
-<pre>
- A  B  C  D  E
- F  G  H  I  J
- K  L  M  N  O
- P  Q  R  S  T
- U  V  W  X  Y  Z
-
- A L F A B E T
-</pre>
-<h2>Alfabetspillet</h2>
-<p>
-Tren på bokstavene i alfabetet. Øv på rekkefølge og bokstavgjenkjenning
-på en enkel og motiverende måte.
-</p>
-<a class="button" href="https://svakaffi-design.github.io/alfabetspillet-server/" target="_blank">
-Spill nå
+<a class="card" href="https://svakaffi-design.github.io/alfabetspillet-server/" target="_blank">
+<h2>🔤 Alfabetspillet</h2>
+<p>Type fast. Think faster.</p>
 </a>
-</div>
 
-</div>
+<a class="card" href="https://svakaffi-design.github.io/klikkprikk/" target="_blank">
+<h2>🎯 Klikkprikk</h2>
+<p>Precision. Speed. Focus.</p>
+</a>
+
+<a class="card" href="https://svakaffi-design.github.io/museflukt/" target="_blank">
+<h2>🧀 Museflukt</h2>
+<p>Escape mode activated.</p>
+</a>
+
+<a class="card" href="https://svakaffi-design.github.io/67etris/" target="_blank">
+<h2>🧱 67etris</h2>
+<p>Stack. Rotate. Survive.</p>
+</a>
+
+</main>
 
 <footer>
-© 2026 Jan-Egil – Pedagogiske spill laget for læring og glede
+★ INSERT BRAIN ★ PRESS START ★ REPEAT ★  
+© 2026 Jan-Egils Arcade Lab
 </footer>
 
 </body>
