@@ -3,141 +3,532 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jan-Egils spilleside</title>
-
+<title>Fjellsdalens pedagogiske spillside</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-@keyframes bgMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+  :root {
+    --yellow: #FFE135;
+    --orange: #FF7043;
+    --pink: #FF4B91;
+    --blue: #2979FF;
+    --green: #00C853;
+    --purple: #7C4DFF;
+    --teal: #00BCD4;
+    --red: #FF1744;
+  }
 
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-6px); }
-    100% { transform: translateY(0px); }
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-    margin: 0;
-    font-family: 'Courier New', monospace;
-    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #ff00cc);
-    background-size: 400% 400%;
-    animation: bgMove 12s ease infinite;
-    color: white;
-}
+  body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #0a1628;
+    cursor: none;
+  }
 
-header {
+  /* Custom cursor */
+  .cursor {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--yellow);
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, background 0.3s;
+    mix-blend-mode: difference;
+  }
+
+  /* ===== ANIMATED BACKGROUND ===== */
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0a1628 0%, #1a0a2e 50%, #0a2818 100%);
+  }
+
+  /* Floating shapes */
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: floatShape linear infinite;
+  }
+
+  @keyframes floatShape {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.2; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* Stars twinkling */
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
+  /* Rainbow wave at top */
+  .rainbow-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+      var(--red), var(--orange), var(--yellow),
+      var(--green), var(--blue), var(--purple), var(--pink), var(--red));
+    background-size: 200% 100%;
+    animation: rainbowSlide 3s linear infinite;
+    z-index: 100;
+  }
+  @keyframes rainbowSlide {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+  }
+
+  /* ===== CONTENT ===== */
+  .page {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 80px;
+  }
+
+  /* Header */
+  .header {
     text-align: center;
-    padding: 3rem 1rem 1rem 1rem;
-}
+    margin-bottom: 70px;
+    animation: headerDrop 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  @keyframes headerDrop {
+    from { transform: translateY(-80px) scale(0.7); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+  }
 
-.ascii {
-    white-space: pre;
-    font-size: 0.7rem;
-    color: #00ffff;
-    text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff;
-}
+  .header-badge {
+    display: inline-block;
+    background: var(--yellow);
+    color: #0a1628;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
 
-h1 {
-    font-size: 2.2rem;
-    background: linear-gradient(90deg, #00ffff, #ff00ff, #ffff00);
+  h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    color: white;
+    text-shadow:
+      4px 4px 0 var(--purple),
+      8px 8px 0 rgba(124,77,255,0.3);
+    letter-spacing: -1px;
+  }
+
+  h1 span {
+    display: block;
+    background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+    background-clip: text;
+    animation: shimmer 3s ease-in-out infinite;
+    background-size: 200% 100%;
+  }
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
 
-main {
-    max-width: 1000px;
-    margin: 2rem auto;
+  .subtitle {
+    margin-top: 16px;
+    color: rgba(255,255,255,0.6);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* Decorative pencil */
+  .pencils {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 1.8rem;
+    animation: wobbleRow 3s ease-in-out infinite;
+  }
+  .pencils span {
+    display: inline-block;
+    animation: wobble 2s ease-in-out infinite;
+  }
+  .pencils span:nth-child(2) { animation-delay: 0.2s; }
+  .pencils span:nth-child(3) { animation-delay: 0.4s; }
+  .pencils span:nth-child(4) { animation-delay: 0.6s; }
+  .pencils span:nth-child(5) { animation-delay: 0.8s; }
+  @keyframes wobble {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(5deg) translateY(-8px); }
+  }
+
+  /* ===== CARDS GRID ===== */
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-    padding: 1rem;
-}
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+  }
 
-.card {
-    background: rgba(255,255,255,0.08);
-    border: 2px solid rgba(255,255,255,0.3);
-    backdrop-filter: blur(10px);
-    padding: 1.5rem;
+  .card {
+    position: relative;
+    border-radius: 28px;
+    overflow: visible;
     text-decoration: none;
+    display: block;
+    animation: cardIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .card:nth-child(1) { animation-delay: 0.2s; }
+  .card:nth-child(2) { animation-delay: 0.4s; }
+  .card:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes cardIn {
+    from { transform: translateY(60px) rotate(-3deg) scale(0.8); opacity: 0; }
+    to { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  }
+
+  .card-inner {
+    border-radius: 28px;
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  }
+
+  .card:hover .card-inner {
+    transform: translateY(-12px) rotate(1deg) scale(1.03);
+  }
+
+  /* Card themes */
+  .card:nth-child(1) .card-inner {
+    background: linear-gradient(135deg, #1a1aff 0%, #7c4dff 60%, #e040fb 100%);
+    box-shadow: 0 20px 60px rgba(26,26,255,0.4), 0 0 0 3px rgba(255,255,255,0.1);
+  }
+  .card:nth-child(1):hover .card-inner {
+    box-shadow: 0 40px 80px rgba(26,26,255,0.6), 0 0 0 3px rgba(255,255,255,0.3);
+  }
+
+  .card:nth-child(2) .card-inner {
+    background: linear-gradient(135deg, #ff6d00 0%, #ff1744 60%, #f50057 100%);
+    box-shadow: 0 20px 60px rgba(255,109,0,0.4), 0 0 0 3px rgba(255,255,255,0.1);
+  }
+  .card:nth-child(2):hover .card-inner {
+    box-shadow: 0 40px 80px rgba(255,109,0,0.6), 0 0 0 3px rgba(255,255,255,0.3);
+  }
+
+  .card:nth-child(3) .card-inner {
+    background: linear-gradient(135deg, #00c853 0%, #00bcd4 60%, #2979ff 100%);
+    box-shadow: 0 20px 60px rgba(0,200,83,0.4), 0 0 0 3px rgba(255,255,255,0.1);
+  }
+  .card:nth-child(3):hover .card-inner {
+    box-shadow: 0 40px 80px rgba(0,200,83,0.6), 0 0 0 3px rgba(255,255,255,0.3);
+  }
+
+  /* Card shine effect */
+  .card-inner::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+    transform: rotate(45deg) translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  .card:hover .card-inner::before {
+    transform: rotate(45deg) translateX(100%);
+  }
+
+  /* Big emoji */
+  .card-emoji {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: emojiFloat 3s ease-in-out infinite;
+  }
+  .card:nth-child(1) .card-emoji { animation-delay: 0s; }
+  .card:nth-child(2) .card-emoji { animation-delay: 1s; }
+  .card:nth-child(3) .card-emoji { animation-delay: 2s; }
+  @keyframes emojiFloat {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+  }
+  .card:hover .card-emoji {
+    transform: scale(1.3) rotate(10deg) translateY(-5px);
+    animation: none;
+  }
+
+  /* Card name */
+  .card-name {
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
     color: white;
-    border-radius: 20px;
-    transition: 0.3s ease;
-    animation: float 4s ease-in-out infinite;
-}
+    text-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
 
-.card:hover {
-    transform: scale(1.08);
-    background: rgba(255,255,255,0.2);
-    box-shadow: 0 0 25px #ff00ff, 0 0 40px #00ffff;
-}
+  /* Play button */
+  .play-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    background: rgba(255,255,255,0.25);
+    border: 2px solid rgba(255,255,255,0.5);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    padding: 10px 24px;
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+  }
+  .card:hover .play-btn {
+    background: rgba(255,255,255,0.4);
+    border-color: white;
+    transform: scale(1.05);
+  }
 
-footer {
+  .play-icon {
+    width: 22px; height: 22px;
+    background: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .play-icon::after {
+    content: '';
+    border-left: 7px solid var(--blue);
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    margin-left: 2px;
+  }
+  .card:nth-child(2) .play-icon::after { border-left-color: var(--orange); }
+  .card:nth-child(3) .play-icon::after { border-left-color: var(--green); }
+
+  /* Decorative dots on cards */
+  .card-dots {
+    position: absolute;
+    top: 16px; right: 16px;
+    display: flex; flex-direction: column; gap: 4px;
+    opacity: 0.3;
+  }
+  .card-dots span {
+    display: flex; gap: 4px;
+  }
+  .card-dots span i {
+    display: block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: white;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    margin-top: 80px;
     text-align: center;
-    padding: 2rem 1rem;
-    opacity: 0.8;
-}
+    color: rgba(255,255,255,0.35);
+    font-size: 0.9rem;
+  }
+  .footer .hearts {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Bouncing balls decoration */
+  .ball {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: ballBounce linear infinite;
+  }
+  @keyframes ballBounce {
+    0% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-40px) rotate(90deg); }
+    50% { transform: translateY(0) rotate(180deg); }
+    75% { transform: translateY(-20px) rotate(270deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+  }
 </style>
 </head>
-
 <body>
 
-<header>
+<div class="cursor" id="cursor"></div>
+<div class="rainbow-bar"></div>
 
-<pre class="ascii">
- ██████╗  █████╗ ███╗   ███╗███████╗
-██╔════╝ ██╔══██╗████╗ ████║██╔════╝
-██║  ███╗███████║██╔████╔██║█████╗  
-██║   ██║██╔══██║██║╚██╔╝██║██╔══╝  
-╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗
- ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝
+<!-- Background -->
+<div class="bg" id="bg"></div>
 
-      >>> JAN-EGILS SPILLESIDE 2026 <<<
-</pre>
+<!-- Page content -->
+<div class="page">
 
-<h1>LEVEL UP YOUR BRAIN 🎮🚀</h1>
+  <header class="header">
+    <div class="header-badge">🎓 Læring er gøy!</div>
+    <h1>Fjellsdalens<br><span>pedagogiske spillside</span></h1>
+    <p class="subtitle">Klikk på et spill og begynn å lære!</p>
+    <div class="pencils">
+      <span>✏️</span><span>📚</span><span>🌟</span><span>📖</span><span>🎯</span>
+    </div>
+  </header>
 
-</header>
+  <div class="cards">
 
-<main>
+    <!-- Gangesirkel -->
+    <a href="https://svakaffi-design.github.io/gangesirkel/" class="card" target="_blank">
+      <div class="card-inner">
+        <div class="card-dots">
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+        </div>
+        <span class="card-emoji">🔢</span>
+        <div class="card-name">Gangesirkel</div>
+        <div class="play-btn">
+          <span class="play-icon"></span>
+          Spill nå!
+        </div>
+      </div>
+    </a>
 
-<a class="card" href="https://svakaffi-design.github.io/23gjett/" target="_blank">
-<h2>🔢 23 Gjett</h2>
-<p>Beat the number. Claim the high score.</p>
-</a>
+    <!-- Slangalfabetet -->
+    <a href="https://svakaffi-design.github.io/slangalfabetet/" class="card" target="_blank">
+      <div class="card-inner">
+        <div class="card-dots">
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+        </div>
+        <span class="card-emoji">🐍</span>
+        <div class="card-name">Slangalfabetet</div>
+        <div class="play-btn">
+          <span class="play-icon"></span>
+          Spill nå!
+        </div>
+      </div>
+    </a>
 
-<a class="card" href="https://svakaffi-design.github.io/hestogkatt/" target="_blank">
-<h2>🐴 Hest og Katt</h2>
-<p>Animal showdown – who wins?</p>
-</a>
+    <!-- Museflukt -->
+    <a href="https://svakaffi-design.github.io/museflukt/" class="card" target="_blank">
+      <div class="card-inner">
+        <div class="card-dots">
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+          <span><i></i><i></i><i></i></span>
+        </div>
+        <span class="card-emoji">🐭</span>
+        <div class="card-name">Museflukt</div>
+        <div class="play-btn">
+          <span class="play-icon"></span>
+          Spill nå!
+        </div>
+      </div>
+    </a>
 
-<a class="card" href="https://svakaffi-design.github.io/alfabetspillet-server/" target="_blank">
-<h2>🔤 Alfabetspillet</h2>
-<p>Type fast. Think faster.</p>
-</a>
+  </div>
 
-<a class="card" href="https://svakaffi-design.github.io/klikkprikk/" target="_blank">
-<h2>🎯 Klikkprikk</h2>
-<p>Precision. Speed. Focus.</p>
-</a>
+  <footer class="footer">
+    <div class="hearts">💛 💚 💙 💜 ❤️</div>
+    <p>Fjellsdalens skole &mdash; Læring gjennom lek</p>
+  </footer>
 
-<a class="card" href="https://svakaffi-design.github.io/museflukt/" target="_blank">
-<h2>🧀 Museflukt</h2>
-<p>Escape mode activated.</p>
-</a>
+</div>
 
-<a class="card" href="https://svakaffi-design.github.io/67etris/" target="_blank">
-<h2>🧱 67etris</h2>
-<p>Stack. Rotate. Survive.</p>
-</a>
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
 
-</main>
+  // Generate background stars
+  const bg = document.getElementById('bg');
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 3 + 1;
+    star.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 3 + 2}s;
+      animation-delay: ${Math.random() * 4}s;
+    `;
+    bg.appendChild(star);
+  }
 
-<footer>
-★ INSERT BRAIN ★ PRESS START ★ REPEAT ★  
-© 2026 Jan-Egils Arcade Lab
-</footer>
+  // Generate floating shapes
+  const colors = ['#FFE135','#FF7043','#FF4B91','#2979FF','#00C853','#7C4DFF','#00BCD4'];
+  for (let i = 0; i < 18; i++) {
+    const shape = document.createElement('div');
+    shape.className = 'shape';
+    const size = Math.random() * 80 + 30;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    shape.style.cssText = `
+      width: ${size}px; height: ${size}px;
+      background: ${color};
+      left: ${Math.random() * 100}%;
+      animation-duration: ${Math.random() * 15 + 10}s;
+      animation-delay: ${Math.random() * 10}s;
+      border-radius: ${Math.random() > 0.5 ? '50%' : Math.random() * 40 + '%'};
+    `;
+    bg.appendChild(shape);
+  }
 
+  // Confetti on card click
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      for (let i = 0; i < 6; i++) {
+        const conf = document.createElement('div');
+        conf.style.cssText = `
+          position: fixed;
+          width: 10px; height: 10px;
+          background: ${colors[Math.floor(Math.random()*colors.length)]};
+          border-radius: ${Math.random()>0.5?'50%':'2px'};
+          left: ${Math.random()*100}vw;
+          top: 100vh;
+          pointer-events: none;
+          z-index: 50;
+          animation: floatShape ${Math.random()*2+1}s ease-out forwards;
+          opacity: 0.9;
+        `;
+        document.body.appendChild(conf);
+        setTimeout(() => conf.remove(), 3000);
+      }
+    });
+  });
+</script>
 </body>
 </html>
